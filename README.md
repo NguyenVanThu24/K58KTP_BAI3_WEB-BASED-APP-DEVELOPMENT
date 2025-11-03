@@ -40,6 +40,11 @@
 # II. CẤU TRÚC BÀI TẬP
 
 # III. TRIỂN KHAI BÀI TẬP
+## 3.1. Kiểm tra trạng thái WSL2 + UBUNTU + DOCKER
+- Kiểm tra WSL đã bật chưa bằng PowerShell với quyền Admin, chạy lệnh `wsl --status`. Kết quả WSL2 đã `enable thành công` và `Docker Desktop đang set làm default distribution`
 
+- Kiểm tra Docker Desktop đang chạy bằng PowerShell với quyền Admin, chạy lệnh `docker --version`. kết quả đang chạy như hình.
+
+- Test Docker bằng `hello-world` bằng PowerShell với quyền Admin, chạy lệnh `docker run hello-world`. Kết quả chạy thành công như hình.
 
 # <p align="center">*--- THE END ---*</p>
