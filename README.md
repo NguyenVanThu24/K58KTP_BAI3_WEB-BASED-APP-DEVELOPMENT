@@ -74,7 +74,7 @@
 ✅ Grafana
 <img width="1913" height="1018" alt="Ảnh chụp màn hình 2025-11-04 000423" src="https://github.com/user-attachments/assets/f7d97b93-264a-49cd-aa93-634353e46bd7" />
 
-✅ nginx (trống vì chưa có file web)
-<img width="1915" height="1019" alt="Ảnh chụp màn hình 2025-11-04 000521" src="https://github.com/user-attachments/assets/6878f676-5d6f-4a1d-ad7e-6c221c319ead" />
+✅ nginx (Demo thử file index.html và đã có kết quả như hình)
+<img width="1915" height="377" alt="Ảnh chụp màn hình 2025-11-04 000521" src="https://github.com/user-attachments/assets/0eeb74ba-23d6-49d0-81f6-1050aad3cd31" />
 
 # <p align="center">*--- THE END ---*</p>
