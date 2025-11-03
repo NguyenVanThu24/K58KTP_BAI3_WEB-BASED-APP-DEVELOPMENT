@@ -42,9 +42,39 @@
 # III. TRIỂN KHAI BÀI TẬP
 ## 3.1. Kiểm tra trạng thái WSL2 + UBUNTU + DOCKER
 - Kiểm tra WSL đã bật chưa bằng PowerShell với quyền Admin, chạy lệnh `wsl --status`. Kết quả WSL2 đã `enable thành công` và `Docker Desktop đang set làm default distribution`
+<img width="1103" height="248" alt="Ảnh chụp màn hình 2025-11-03 222548" src="https://github.com/user-attachments/assets/a2287674-f51d-4ec3-98f2-077542161a81" />
 
 - Kiểm tra Docker Desktop đang chạy bằng PowerShell với quyền Admin, chạy lệnh `docker --version`. kết quả đang chạy như hình.
+<img width="1099" height="63" alt="Ảnh chụp màn hình 2025-11-03 223039" src="https://github.com/user-attachments/assets/8a889275-3fba-40a9-a696-2b97d9743b67" />
 
 - Test Docker bằng `hello-world` bằng PowerShell với quyền Admin, chạy lệnh `docker run hello-world`. Kết quả chạy thành công như hình.
+<img width="1100" height="603" alt="Ảnh chụp màn hình 2025-11-03 224342" src="https://github.com/user-attachments/assets/6caf5ce4-0104-4168-9a49-2cc5f518cdbe" />
+
+## 3.2. Tạo thư mục bài tập + File docker-compose.yml
+- Tạo thư mục bài tập bằng PowerShell với quyền Admin bằng các lệnh như `cd E:\`, `mkdir bt3_web_linux` & `cd bt3_web_linux` trong hình.
+<img width="1100" height="442" alt="Ảnh chụp màn hình 2025-11-03 225649" src="https://github.com/user-attachments/assets/2638fdc2-168c-4178-a551-80d1e90c621d" />
+
+- Tạo file `docker-compose.yml` trong thư mục bài tập `bt3_web_linux` bằng lệnh `notepad docker-compose.yml`. Với đầy đủ 6 docker container: `mariadb, phpmyadmin, node-red, influxdb, grafana, nginx`. Edit bằng Notepad được kết quả như hình.
+<img width="958" height="1017" alt="Ảnh chụp màn hình 2025-11-03 230801" src="https://github.com/user-attachments/assets/da73a20a-775b-4c22-863c-e173926206df" />
+
+## 3.3. Khởi động toàn bộ hệ thống Docker
+- Chạy docker-compose bằng PowerShell với quyền Admin, chạy lệnh `docker-compose up -d`. Kết quả 6 Docker Container đang ở trạng thái Running thành công như hình.
+<img width="1811" height="209" alt="Ảnh chụp màn hình 2025-11-03 235937" src="https://github.com/user-attachments/assets/e949c7d5-483f-4785-b8fa-2db7d7cf8489" />
+
+- Kiểm tra container đang chạy bằng lệnh `docker ps` sẽ thấy bảng Container đang chạy như hình.
+<img width="1809" height="184" alt="Ảnh chụp màn hình 2025-11-03 235947" src="https://github.com/user-attachments/assets/49a5c963-107a-4d49-9f8f-686c961792e4" />
+
+- Kiểm tra từng Service trong trình duyệt.
+✅ NodeRED
+<img width="1915" height="1020" alt="Ảnh chụp màn hình 2025-11-04 000406" src="https://github.com/user-attachments/assets/27f9de19-86d6-4c34-82af-f39cd48a8ad2" />
+
+✅ phpMyAdmin
+<img width="1909" height="1014" alt="Ảnh chụp màn hình 2025-11-04 000416" src="https://github.com/user-attachments/assets/0f15e73c-69d1-4122-b020-225d708b7bc1" />
+
+✅ Grafana
+<img width="1913" height="1018" alt="Ảnh chụp màn hình 2025-11-04 000423" src="https://github.com/user-attachments/assets/f7d97b93-264a-49cd-aa93-634353e46bd7" />
+
+✅ nginx (trống vì chưa có file web)
+<img width="1915" height="1019" alt="Ảnh chụp màn hình 2025-11-04 000521" src="https://github.com/user-attachments/assets/6878f676-5d6f-4a1d-ad7e-6c221c319ead" />
 
 # <p align="center">*--- THE END ---*</p>
