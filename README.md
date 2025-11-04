@@ -5,11 +5,11 @@
 **MSSV:** K225480106062   
 **Ngày giao:** 2025-10-24 13:50   
 **Hạn nộp:** 2025-11-05 00:00   
-**Đề tài:** Xây dựng một hệ thống **web IOT (Giám sát dữ liệu IOT)** dạng **Single Page Application (SPA)**, triển khai trên **Linux (Docker Desktop + WSL2 + Ubuntu)**.
 
 ---
+## 💻 Đề tài: Xây dựng một hệ thống web IOT (Giám sát dữ liệu IOT) dạng Single Page Application (SPA), triển khai trên Linux (Docker Desktop + WSL2 + Ubuntu).
+
 # I. YÊU CẦU BÀI TẬP
-💻 Bài tập yêu cầu xây dựng một hệ thống **web IOT (Giám sát dữ liệu IOT)** dạng **Single Page Application (SPA)**, triển khai trên **Linux (Docker Desktop + WSL2 + Ubuntu)**.
 
 **1. Cài đặt môi trường Linux**   
 
