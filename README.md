@@ -77,4 +77,25 @@
 ✅ nginx (Demo thử file index.html và đã có kết quả như hình)
 <img width="1915" height="377" alt="Ảnh chụp màn hình 2025-11-04 000521" src="https://github.com/user-attachments/assets/0eeb74ba-23d6-49d0-81f6-1050aad3cd31" />
 
+## 3.4. Tạo API giả lập Sensor trong Node-RED
+- Tạo API giả lập Sensor để đảm bảo JOSN trả về giá trị chính xác
+  + HTTP IN (API nhận request): Method: GET với URL: /get_sensor
+  + Function Node (trả JSON)
+  + HTTP Response
+<img width="1917" height="871" alt="Ảnh chụp màn hình 2025-11-04 220437" src="https://github.com/user-attachments/assets/695699bd-3a90-431c-a4ee-e85ec512c53d" />
+
+Kết quả trả về:
+
+```
+{
+  "temperature": "20.42",
+  "humidity": "59.77",
+  "light": 144,
+  "time": "2025-11-04T15:00:15.677Z"
+}
+```
+
+## 3.5. Kết nối Node-RED với InfluxDB 1.8
+- Kiểm tra InfluxDB 1.8 đang có đang chạy không
+
 # <p align="center">*--- THE END ---*</p>
