@@ -77,6 +77,180 @@ sudo chmod +x /usr/local/bin/docker-compose
 <img width="1916" height="295" alt="Ảnh chụp màn hình 2025-11-05 180931" src="https://github.com/user-attachments/assets/5bf46d92-5cd0-4d53-b0d9-6e4b8b07ad50" />
 
 ## 3.3. CẤU HÌNH DOCKER COMPOSE
+#### Mục tiêu là cài đặt 6 container: `mariadb (3306), phpmyadmin (8080), nodered/node-red (1880), influxdb (8086), grafana/grafana (3000), nginx (80,443)`
+- `mariadb (3306):` Cơ sở dữ liệu quan hệ phpMyAdmin.
+- `phpmyadmin (8080):` Quản lý database qua web MariaDB.
+- `nodered/node-red (1880):` Lập trình luồng dữ liệu IoT InfluxDB, Grafana.
+- `influxdb (8086):` Lưu dữ liệu dạng thời gian kết nối Node-RED, Grafana.
+- `grafana/grafana (3000):` Trực quan hóa dữ liệu kết nối InfluxDB, MariaDB.
+- `nginx (80,443):` Reverse proxy / Web server, kết nối với các container web khác.
+#### Tạo file docker-compose.yml để cài đặt các docker container trên:
+- Tạo thư mục và chuyển đến nó bằng tập lệnh sau trên Ubuntu:
+```
+mkdir webspalinux
+cd webapplinux
+```
+- Tạo file docker-compose.yml trong thư mục `webspalinux` bằng lệnh sau: `nano docker-compose.yml`
+```
+services:
+  mariadb:
+    image: mariadb:10.11
+    container_name: mariadb-thu
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: ShopQA
+      MYSQL_USER: thu
+      MYSQL_PASSWORD: thu123
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mariadb/data:/var/lib/mysql
+    networks:
+      - thu-network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin-thu
+    restart: always
+    environment:
+      PMA_HOST: mariadb        # ✅ Sửa lỗi quan trọng
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root123
+    ports:
+      - "8080:80"
+    depends_on:
+      - mariadb
+    networks:
+      - thu-network
+
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb-thu
+    restart: always
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: admin123
+      DOCKER_INFLUXDB_INIT_ORG: thu-org
+      DOCKER_INFLUXDB_INIT_BUCKET: thu-bucket
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: super-secret-token
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./influxdb/data:/var/lib/influxdb2
+    networks:
+      - thu-network
+
+  nodered:
+    image: nodered/node-red:latest
+    container_name: nodered-thu
+    restart: always
+    user: "1000:1000"
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./node-red/data:/data      # ✅ Chỉ mount thư mục data
+    networks:
+      - thu-network
+    depends_on:
+      - mariadb
+      - influxdb
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana-thu
+    restart: always
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin123
+      GF_SERVER_HTTP_PORT: 3000
+      GF_SERVER_ROOT_URL: "%(protocol)s://localhost:3000/grafana/"
+      GF_SERVER_SERVE_FROM_SUB_PATH: "true"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/data:/var/lib/grafana   # ✅ Mount đúng thư mục data
+    depends_on:
+      - influxdb
+    networks:
+      - thu-network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-thu
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - nodered
+      - grafana
+    networks:
+      - thu-network
+
+networks:
+  thu-network:
+    driver: bridge
+```
+- Khởi động lại tất cả các container bằng cách chạy lệnh sau trong thư mục project trên Ubuntu: `docker compose up -d`
+<img width="1917" height="211" alt="Ảnh chụp màn hình 2025-11-06 102733" src="https://github.com/user-attachments/assets/c8ba3f06-4d9c-487d-81df-186f33d42d95" />
+
+- Kiểm tra các container đang hoạt động bằng lệnh: `docker ps`
+<img width="1916" height="379" alt="Ảnh chụp màn hình 2025-11-06 102743" src="https://github.com/user-attachments/assets/b3cdef33-6fbc-4e05-aa5e-4eff525b12b9" />
+
+#### Cấu hình nginx làm web-server
+- Tạo 1 file cấu hình `default.conf` trong thư mục `nginx`.
+```
+server {
+    listen 80;
+    server_name localhost nguyenvanthu.com;
+
+    location / {
+        root /usr/share/nginx/html;
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /api/ {
+        proxy_pass http://nodered-thu:1880/api/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    location /nodered/ {
+        proxy_pass http://nodered-thu:1880/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    location /grafana/ {
+        proxy_pass http://grafana-thu:3000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+
+- Sau khi cấu hình mọi thứ đã ổn, thì sẽ thấy các container này chạy trên các cổng tương ứng như hình bên dưới.
+<img width="1917" height="1017" alt="Ảnh chụp màn hình 2025-11-06 002709" src="https://github.com/user-attachments/assets/3759bdee-a0b9-428c-b91a-7d462a16d948" />
+
+<img width="1916" height="1030" alt="Ảnh chụp màn hình 2025-11-06 104230" src="https://github.com/user-attachments/assets/1c9a4880-0088-4c26-93c5-f0315d289a13" />
+
+<img width="1915" height="1023" alt="Ảnh chụp màn hình 2025-11-06 104355" src="https://github.com/user-attachments/assets/937c8ccc-3c81-4ae0-9920-d2cc5d5f6513" />
+
+<img width="1914" height="1021" alt="Ảnh chụp màn hình 2025-11-06 104410" src="https://github.com/user-attachments/assets/5daa573f-ecf8-4091-ac25-056f48924809" />
+
+- Sau khi cấu hình thành công nginx thì em đã demo thành công domain `nguyenvanthu.com` như hình.
+<img width="1915" height="1079" alt="Ảnh chụp màn hình 2025-11-06 104602" src="https://github.com/user-attachments/assets/88f7aff6-d260-492d-8437-a1fc435b1504" />
+
+- `Website chính:` 👉 http://nguyenvanthu.com
+- `Node-RED:` 👉 http://nguyenvanthu.com/nodered
+- `Grafana:` 👉 http://nguyenvanthu.com/grafana
 
 ## 3.4. 
 
