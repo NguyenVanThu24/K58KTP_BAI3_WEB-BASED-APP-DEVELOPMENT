@@ -309,6 +309,6 @@ server {
 
 - Việc cấu hình và cài đặt các Docker Container, Ubuntu trên môi trường Linux rất quan trọng cho cả hệ thống.
 - Xây dựng Web IOT dưới dạng SPA đầy đủ frontend – backend – database – giám sát.
-- Bài làm của em chưa được hoàn thiện vẫn đang tiếp tục thực hiện trong việc xây dựng Backend - Database - và giám sát hệ thống nhưng em cũng đã hiểu được một phần trong việc xây dựng và kết nối chúng để vẫn hành và duy trì. Em sẽ cố găng tiếp tục hoàn thiện các bước còn lại ạ!
+- Bài làm của em chưa được hoàn thiện vẫn đang tiếp tục thực hiện trong việc xây dựng Backend - Database - và giám sát hệ thống nhưng em cũng đã hiểu được một phần trong việc xây dựng và kết nối chúng để vận hành và duy trì. Em sẽ cố găng tiếp tục hoàn thiện các bước còn lại ạ!
  
 # <p align="center">*--- THE END ---*</p>
