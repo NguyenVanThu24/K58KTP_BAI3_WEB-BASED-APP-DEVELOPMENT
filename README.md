@@ -279,7 +279,7 @@ server {
 
 <img width="1914" height="1021" alt="Ảnh chụp màn hình 2025-11-06 104410" src="https://github.com/user-attachments/assets/5daa573f-ecf8-4091-ac25-056f48924809" />
 
-- Sau khi cấu hình thành công nginx thì em đã demo thành công domain `nguyenvanthu.com` như hình.
+- Sau khi cấu hình thành công nginx thì em đã demo file `index.html` thành công trên domain `nguyenvanthu.com` như hình.
 <img width="1915" height="1079" alt="Ảnh chụp màn hình 2025-11-06 104602" src="https://github.com/user-attachments/assets/88f7aff6-d260-492d-8437-a1fc435b1504" />
 
 - `Website chính:` 👉 http://nguyenvanthu.com
@@ -293,6 +293,12 @@ server {
 
 - Nodered test thử hệ thống
 <img width="1917" height="560" alt="Ảnh chụp màn hình 2025-11-06 221649" src="https://github.com/user-attachments/assets/ec93581f-10ed-4978-be7a-da0f8951ef46" />
+
+- Nodered tạo API LOGIN
+ <img width="1289" height="245" alt="Ảnh chụp màn hình 2025-11-06 235621" src="https://github.com/user-attachments/assets/b0cdcf13-b984-4582-9fc4-5dd25eeefdff" />
+
+- Nodered tạo API LATEST
+<img width="1184" height="194" alt="Ảnh chụp màn hình 2025-11-06 235628" src="https://github.com/user-attachments/assets/72f604b6-cbe6-4dbd-84ad-ce46dec35065" />
 
 ## 3.5. NGINX LÀM WEB-SERVER
 - Giao diện Frontend của hệ thống.
