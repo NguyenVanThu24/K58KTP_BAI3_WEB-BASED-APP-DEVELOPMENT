@@ -252,8 +252,9 @@ server {
 - `Node-RED:` 👉 http://nguyenvanthu.com/nodered
 - `Grafana:` 👉 http://nguyenvanthu.com/grafana
 
-## 3.4. 
-
+## 3.4. LẬP TRÌNH WEB PRONTEND & BACKEND
+#### Tạo 
+- Vào phpMyAdmin → SQL → chạy.
 ## 3.5. 
 
 # <p align="center">*--- THE END ---*</p>
