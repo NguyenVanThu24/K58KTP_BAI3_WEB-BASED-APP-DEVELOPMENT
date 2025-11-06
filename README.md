@@ -254,7 +254,21 @@ server {
 
 ## 3.4. LẬP TRÌNH WEB PRONTEND & BACKEND
 #### Tạo 
-- Vào phpMyAdmin → SQL → chạy.
-## 3.5. 
+- Vào phpMyAdmin → SQL → chạy. Xây dựng sơ sở dữ liệu
+<img width="1911" height="1018" alt="Ảnh chụp màn hình 2025-11-06 222153" src="https://github.com/user-attachments/assets/66b3df5c-f3f3-4e5e-9784-45752a91104e" />
 
+- Nodered test thử hệ thống
+<img width="1917" height="560" alt="Ảnh chụp màn hình 2025-11-06 221649" src="https://github.com/user-attachments/assets/ec93581f-10ed-4978-be7a-da0f8951ef46" />
+
+## 3.5. NGINX LÀM WEB-SERVER
+- Giao diện Frontend của hệ thống.
+<img width="1919" height="1020" alt="Ảnh chụp màn hình 2025-11-06 231836" src="https://github.com/user-attachments/assets/55bed2f1-bb79-4394-b569-f6a1c2a4f729" />
+
+## 3.6. TỔNG KẾT
+Sau khi nghiên cứu và làm bài tập này, cá nhân em đã nhận thấy rằng:
+
+- Việc cấu hình và cài đặt các Docker Container, Ubuntu trên môi trường Linux rất quan trọng cho cả hệ thống.
+- Xây dựng Web IOT dưới dạng SPA đầy đủ frontend – backend – database – giám sát.
+- Bài làm của em chưa được hoàn thiện vẫn đang tiếp tục thực hiện trong việc xây dựng Backend - Database - và giám sát hệ thống nhưng em cũng đã hiểu được một phần trong việc xây dựng và kết nối chúng để vẫn hành và duy trì. Em sẽ cố găng tiếp tục hoàn thiện các bước còn lại ạ!
+ 
 # <p align="center">*--- THE END ---*</p>
