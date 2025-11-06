@@ -38,7 +38,41 @@
  - Cấu hình nginx để http://nguyenvanthu.com/nodered truy cập vào nodered qua cổng 80, (dù nodered đang chạy ở port 1880)
  - Cấu hình nginx để http://nguyenvanthu.com/grafana truy cập vào grafana qua cổng 80, (dù grafana đang chạy ở port 3000)
 # II. CẤU TRÚC BÀI TẬP
-
+```
+/home/nguyenvanthu/webspalinux/  
+│
+├── docker-compose.yml             # File chính khai báo toàn bộ container
+│
+├── nginx/
+│   └── default.conf               # File cấu hình nginx (reverse proxy, domain)
+│  
+│
+├── node-red/
+│   ├── data/                     
+│
+├── mariadb/
+│   ├── data/                      
+│
+├── influxdb/
+│   └── data/                      
+│
+├── grafana/
+│   ├── data/                      
+│   └── config/
+        └── grafana.ini            
+├── phpmyadmin/                    
+│
+└── frontend/
+    ├── index.html                 
+    ├── js/
+    │   ├── app.js                 
+    │   ├── login.js              
+    │   └── cart.js               
+    ├── css/
+    │   └── style.css
+    └── assets/
+        └── images/  
+```
 # III. TRIỂN KHAI BÀI TẬP
 ## 3.1. CẤU HÌNH CÀI ĐẶT MÔI TRƯỜNG LINUX
 - Kích hoạt WSL và cài đặt Ubuntu mở PowerShell (Run as Administrator) chạy lệnh: `wsl --install` đồng thời tiến hành thiết lập username và password.
@@ -265,7 +299,7 @@ server {
 <img width="1919" height="1020" alt="Ảnh chụp màn hình 2025-11-06 231836" src="https://github.com/user-attachments/assets/55bed2f1-bb79-4394-b569-f6a1c2a4f729" />
 
 ## 3.6. TỔNG KẾT
-Sau khi nghiên cứu và làm bài tập này, cá nhân em đã nhận thấy rằng:
+👉 Sau khi nghiên cứu và làm bài tập này, cá nhân em đã nhận thấy rằng:
 
 - Việc cấu hình và cài đặt các Docker Container, Ubuntu trên môi trường Linux rất quan trọng cho cả hệ thống.
 - Xây dựng Web IOT dưới dạng SPA đầy đủ frontend – backend – database – giám sát.
